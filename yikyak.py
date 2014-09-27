@@ -1,10 +1,4 @@
-import requests
-
-with open('upvote.txt', 'r') as f:
-	upvotes = f.read().split()
-
-with open('downvote.txt', 'r') as f:
-	downvotes = f.read().split()
+import requests, uuid
 
 messageID = "R/54267bf93c77b60e5f66beca3bdde"
 
@@ -20,6 +14,14 @@ city = Berkeley
 lat = city[0]
 lng = city[1]
 
+def make_uuids(amount):
+	i = 0
+	uuids = []
+	while i < amount:
+		 uuids.append(str(uuid.uuid4()).upper())
+		 i += 1
+	return uuids
+
 def kill_feed(feed):
 	i = 0
 	while i < len(feed): 
@@ -34,10 +36,10 @@ def kill_feed(feed):
 				n += 1
 		i += 1
 
-def mass_like_yak(m_id):
-	for user_id in upvotes:
+def mass_like_yak(m_id, numLikes):
+	fake_user_list = make_uuids(numLikes)
+	for user_id in fake_user_list:
 		like_yak(m_id, user_id)
-	f.close()
 
 def like_yak(m_id, user_id):
 	yikyak_header =  { "Host": "yikyakapp.com", "Accept-Encoding": "gzip, deflate", "Accept": "*/*", "Accept-Language": "en;q=1, fr;q=0.9, de;q=0.8, ja;q=0.7, nl;q=0.6, it;q=0.5", "Connection": "keep-alive", "User-Agent": "Yik Yak/2.0.2.5 (iPhone; iOS 7.0.6; Scale/2.00)" }
@@ -46,9 +48,9 @@ def like_yak(m_id, user_id):
 	print('sent like')
 
 def mass_dislike_yak(m_id):
-	for user_id in downvotes: 
+	fake_user_list = make_uuids(numLikes)
+	for user_id in fake_user_list:
 		dislike_yak(m_id, user_id)
-	f.close()
 
 def dislike_yak(m_id, user_id):
 	yikyak_header =  { "Host": "yikyakapp.com", "Accept-Encoding": "gzip, deflate", "Accept": "*/*", "Accept-Language": "en;q=1, fr;q=0.9, de;q=0.8, ja;q=0.7, nl;q=0.6, it;q=0.5", "Connection": "keep-alive", "User-Agent": "Yik Yak/2.0.2.5 (iPhone; iOS 7.0.6; Scale/2.00)" }
