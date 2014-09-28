@@ -5,10 +5,9 @@ messageID = "R/54267bf93c77b60e5f66beca3bdde"
 Ann_Arbor = ['42.2814', "-83.7483"]
 Austin = ['30.2861','-97.7394']
 Berkeley = ['37.8717', '-122.2728']
-Columbus = ['39.9833', '-82.9833']
+Columbus = ['40.0000', '-83.0145']
 Philadelphia = ['39.9500', '-75.1900']
 State_College = ['40.7914', '-77.8586']
-Columbus = ['40.0000', '-83.0145']
 
 city = Berkeley
 lat = city[0]
