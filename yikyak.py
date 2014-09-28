@@ -46,7 +46,7 @@ def like_yak(m_id, user_id):
 	send_like = requests.get("https://yikyakapp.com/api/likeMessage?messageID=" + m_id + "&userID=" + user_id + "&salt=1411725084&hash=jxuHrrXzeK1LwTC5JlsQWsUOuzo%3D&userLat=37.873325&userLong=-122.252983")
 	print('sent like')
 
-def mass_dislike_yak(m_id):
+def mass_dislike_yak(m_id, numLikes):
 	fake_user_list = make_uuids(numLikes)
 	for user_id in fake_user_list:
 		dislike_yak(m_id, user_id)
@@ -62,3 +62,14 @@ def dislike_yak(m_id, user_id):
 def get_yaks():
 	yaks = requests.get("https://yikyakapp.com/api/getMessages?userID=f6bb54ed-d969-4260-b101-9b455e564016&lat="+lat+"&long="+lng+"&salt=1411724954&hash=vuhZnitPbE4p8agZ5sBUub2KUvQ%3D&userLat="+lat+"&userLong="+lng)
 	return yaks.json()["messages"]
+
+def terminal_yak():
+	yaks_request = requests.get("https://yikyakapp.com/api/getMessages?userID=f6bb54ed-d969-4260-b101-9b455e564016&lat="+lat+"&long="+lng+"&salt=1411724954&hash=vuhZnitPbE4p8agZ5sBUub2KUvQ%3D&userLat="+lat+"&userLong="+lng)
+	yaks = []
+
+	for yak in yaks_request.json()["messages"]:
+		print(str(yak['numberOfLikes']) + ' ' + yak['message'] + ' ' + yak['messageID'] + '\n ------------------------------------------------')
+
+
+
+
